@@ -7,10 +7,37 @@
 
 import SwiftUI
 import SwiftData
+import HealthKit
+
+// Add HealthKitManager as an observable object
+@MainActor
+class ContentViewModel: ObservableObject {
+    @Published var isAuthorized = false
+    @Published var stepCount: Double = 0.0
+    let healthKitManager = HealthKitManager()
+
+    func requestHealthKit() {
+        healthKitManager.requestAuthorization { [weak self] success in
+            DispatchQueue.main.async {
+                self?.isAuthorized = success
+                if success {
+                    self?.fetchSteps()
+                }
+            }
+        }
+    }
+
+    func fetchSteps() {
+        healthKitManager.fetchStepCount()
+        self.stepCount = healthKitManager.stepCount
+    }
+}
+
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
+    @StateObject private var viewModel = ContentViewModel()
 
     var body: some View {
         NavigationSplitView {
@@ -34,8 +61,22 @@ struct ContentView: View {
                     }
                 }
             }
+            Section(header: Text("Apple HealthKit Integration")) {
+                if viewModel.isAuthorized {
+                    VStack {
+                        Text("Today's Step Count: \(viewModel.healthKitManager.stepCount, specifier: "%.0f")")
+                        Button("Refresh Steps") {
+                            viewModel.fetchSteps()
+                        }
+                    }
+                } else {
+                    Button("Connect to Apple HealthKit") {
+                        viewModel.requestHealthKit()
+                    }
+                }
+            }
         } detail: {
-            Text("Select an item now")
+            Text("Select an item")
         }
     }
 
