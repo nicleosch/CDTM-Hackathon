@@ -20,7 +20,7 @@ def process_image_with_mistral(image_path):
         return
 
     # Step 2: Set up Mistral API
-    api_key = "rjJ4ryG5vr1g0y6bConpAKbZrCWdScja"  # Replace with your actual API key
+    api_key = "cr0jsksN6GrXg0spar0vMPENfHVNza6v"  # Replace with your actual API key
     model = "mistral-small-latest"
 
     if not api_key:
@@ -35,7 +35,7 @@ def process_image_with_mistral(image_path):
             "content": [
                 {
                     "type": "text",
-                    "text": "Extract and return only the laboratory name, date, patient name, and patient address in strict JSON format."
+                    "text": "Extract and return the vaccination details in the specified JSON format. Check every entry in the image."
                 },
                 {
                     "type": "image_url",
@@ -45,7 +45,7 @@ def process_image_with_mistral(image_path):
         }
     ]
 
-    # Step 4: Get the chat response using strict JSON schema
+    # Step 4: Get the chat response using the updated JSON schema
     try:
         chat_response = client.chat.complete(
             model=model,
@@ -53,29 +53,37 @@ def process_image_with_mistral(image_path):
             response_format={
                 "type": "json_schema",
                 "json_schema": {
-                    "name": "LabReportInfo",
-                    "description": "Extracted information from a lab report.",
+                    "name": "VaccinationInfo",
+                    "description": "Extracted vaccination details from the document.",
                     "schema": {
                         "type": "object",
                         "properties": {
-                            "laboratory_name": {"type": "string"},
-                            "date": {"type": "string"},
-                            "patient_name": {"type": "string"},
-                            "patient_address": {"type": "string"}
+                            "Vaccinations": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": { "type": "string" },
+                                        "doctor": { "type": "string" },
+                                        "date": { "type": "string" }  # Removed "format": "date"
+                                    },
+                                    "additionalProperties": False
+                                }
+                            }
                         },
-                        "required": ["laboratory_name", "date", "patient_name", "patient_address"],
+                        "required": ["Vaccinations"],
                         "additionalProperties": False
                     },
                     "strict": True
                 }
             }
         )
-        print("\nExtracted lab report info (strict JSON format):")
+        print("\nExtracted vaccination details (strict JSON format):")
         print(chat_response.choices[0].message.content)
     except Exception as e:
         print(f"Error processing image with Mistral: {e}")
 
 if __name__ == "__main__":
     # Replace with the path to your image file
-    image_path = "resources/photo_2025-05-09 23.08.49.jpeg"
+    image_path = "resources/impfpass2.jpeg"
     process_image_with_mistral(image_path)
