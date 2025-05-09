@@ -13,10 +13,21 @@ def encode_image(image_path):
         print(f"Error: {e}")
         return None
 
-def process_image_with_mistral(image_path):
-    # Step 1: Encode the image to base64
-    base64_image = encode_image(image_path)
-    if not base64_image:
+def process_images_with_mistral(image_paths):
+    # Step 1: Encode all images to base64
+    base64_images = []
+    for image_path in image_paths:
+        base64_image = encode_image(image_path)
+        if base64_image:
+            base64_images.append({
+                "type": "image_url",
+                "image_url": f"data:image/jpeg;base64,{base64_image}"
+            })
+        else:
+            print(f"Skipping image: {image_path}")
+
+    if not base64_images:
+        print("No valid images to process. Exiting.")
         return
 
     # Step 2: Set up Mistral API
@@ -35,12 +46,9 @@ def process_image_with_mistral(image_path):
             "content": [
                 {
                     "type": "text",
-                    "text": "Extract and return the vaccination details in the specified JSON format. Check every entry in the image."
+                    "text": "Extract and return the vaccination details in the specified JSON format. Check every entry in the images."
                 },
-                {
-                    "type": "image_url",
-                    "image_url": f"data:image/jpeg;base64,{base64_image}"
-                }
+                *base64_images  # Add all encoded images to the content
             ]
         }
     ]
@@ -54,7 +62,7 @@ def process_image_with_mistral(image_path):
                 "type": "json_schema",
                 "json_schema": {
                     "name": "VaccinationInfo",
-                    "description": "Extracted vaccination details from the document.",
+                    "description": "Extracted vaccination details from the documents.",
                     "schema": {
                         "type": "object",
                         "properties": {
@@ -65,7 +73,7 @@ def process_image_with_mistral(image_path):
                                     "properties": {
                                         "name": { "type": "string" },
                                         "doctor": { "type": "string" },
-                                        "date": { "type": "string" }  # Removed "format": "date"
+                                        "date": { "type": "string" }
                                     },
                                     "additionalProperties": False
                                 }
@@ -81,9 +89,14 @@ def process_image_with_mistral(image_path):
         print("\nExtracted vaccination details (strict JSON format):")
         print(chat_response.choices[0].message.content)
     except Exception as e:
-        print(f"Error processing image with Mistral: {e}")
+        print(f"Error processing images with Mistral: {e}")
 
 if __name__ == "__main__":
-    # Replace with the path to your image file
-    image_path = "resources/impfpass2.jpeg"
-    process_image_with_mistral(image_path)
+    # List of image paths to process
+    image_paths = [
+        "resources/impfpass2.jpeg",  # First image
+        "resources/impfpass.jpeg"   # Second image
+    ]
+
+    # Process all images in a single request
+    process_images_with_mistral(image_paths)
