@@ -20,6 +20,7 @@ import utils
 app = FastAPI()
 origins = [
     "http://localhost:8080",
+    "https://dashboard-1056955526781.europe-west3.run.app"
 ]
 app.add_middleware(
     CORSMiddleware,
