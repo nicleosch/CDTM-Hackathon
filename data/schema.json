@@ -2,7 +2,7 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "type": "object",
     "properties": {
-      "General Information": {
+      "generalInformation": {
         "type": "object",
         "properties": {
           "name": {
@@ -18,7 +18,7 @@
           "address": {
             "type": "string"
           },
-          "Insurance": {
+          "insurance": {
             "type": "object",
             "properties": {
               "provider": {
@@ -31,10 +31,10 @@
           }
         }
       },
-      "Apple Health": {
+      "appleHealth": {
         "type": "object",
         "properties": {
-          "Activity": {
+          "activity": {
             "type": "object",
             "properties": {
               "stepCount": {
@@ -60,7 +60,7 @@
               }
             }
           },
-          "Body Measurements": {
+          "bodyMeasurements": {
             "type": "object",
             "properties": {
               "height": {
@@ -83,7 +83,7 @@
               }
             }
           },
-          "Cycle Tracking": {
+          "cycleTracking": {
             "type": "object",
             "properties": {
               "menstrualFlow": {
@@ -103,7 +103,7 @@
               }
             }
           },
-          "Hearing": {
+          "hearing": {
             "type": "object",
             "properties": {
               "headphoneAudioLevels": {
@@ -117,7 +117,7 @@
               }
             }
           },
-          "Heart": {
+          "heart": {
             "type": "object",
             "properties": {
               "heartRate": {
@@ -154,7 +154,7 @@
               }
             }
           },
-          "Medications": {
+          "medications": {
             "type": "array",
             "items": {
               "type": "object",
@@ -180,7 +180,7 @@
               }
             }
           },
-          "Mental Wellbeing": {
+          "mentalWellbeing": {
             "type": "object",
             "properties": {
               "mindfulnessMinutes": {
@@ -200,7 +200,7 @@
               }
             }
           },
-          "Mobility": {
+          "mobility": {
             "type": "object",
             "properties": {
               "walkingSpeed": {
@@ -220,7 +220,7 @@
               }
             }
           },
-          "Nutrition": {
+          "nutrition": {
             "type": "object",
             "properties": {
               "calories": {
@@ -249,7 +249,7 @@
               }
             }
           },
-          "Respiratory": {
+          "respiratory": {
             "type": "object",
             "properties": {
               "respiratoryRate": {
@@ -263,7 +263,7 @@
               }
             }
           },
-          "Sleep": {
+          "sleep": {
             "type": "object",
             "properties": {
               "inBedTime": {
@@ -294,7 +294,7 @@
               }
             }
           },
-          "Symptoms": {
+          "symptoms": {
             "type": "object",
             "properties": {
               "headache": {
@@ -323,7 +323,7 @@
               }
             }
           },
-          "Vitals": {
+          "vitals": {
             "type": "object",
             "properties": {
               "bloodPressure": {
@@ -353,7 +353,7 @@
               }
             }
           },
-          "Other Data": {
+          "otherData": {
             "type": "object",
             "properties": {
               "handwashingDuration": {
@@ -369,7 +369,7 @@
           }
         }
       },
-      "Vaccinations": {
+      "vaccinations": {
         "type": "array",
         "items": {
           "type": "object",
@@ -387,10 +387,10 @@
           }
         }
       },
-      "Medical History": {
+      "medicalHistory": {
         "type": "object",
         "properties": {
-          "Blood Panels": {
+          "bloodPanels": {
             "type": "array",
             "items": {
               "hemoglobin": {
@@ -620,7 +620,7 @@
               }
             }
           },
-          "ClinicalReports": {
+          "clinicalReports": {
             "type": "array",
             "items": {
               "type": "object",
@@ -925,7 +925,7 @@
               }
             }
           },
-          "DoctorLetters": {
+          "doctorLetters": {
             "type": "array",
             "items": {
               "type": "object",
@@ -955,10 +955,10 @@
           }
         }
       },
-      "Reasons for Visit": {
+      "reasonsForVisit": {
         "type": "string"
       },
-      "Additional Comments": {
+      "additionalComments": {
         "type": "string"
       }
     }
