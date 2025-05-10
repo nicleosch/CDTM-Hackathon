@@ -10,6 +10,8 @@ from livekit.plugins import (
 )
 from livekit.plugins.turn_detector.multilingual import MultilingualModel
 
+from gemini_llm import GeminiLLM
+ 
 load_dotenv()
 
 
@@ -23,8 +25,10 @@ async def entrypoint(ctx: agents.JobContext):
 
     session = AgentSession(
         stt=google.STT(),
-        llm=openai.LLM(model="gpt-4o-mini"),
-        tts=google.TTS(),
+        llm=openai.LLM(model="gpt-4o-2024-11-20"),
+        # llm = GeminiLLM(),
+        tts = openai.TTS(model="gpt-4o-mini-tts"),
+        # tts=google.TTS(),
         vad=silero.VAD.load(),
         turn_detection=MultilingualModel(),
     )
