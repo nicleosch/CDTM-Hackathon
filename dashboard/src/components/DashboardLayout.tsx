@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import { SidebarProvider, Sidebar, SidebarContent, SidebarTrigger } from '@/components/ui/sidebar';
 import { Button } from '@/components/ui/button';
 import { useToast } from "@/hooks/use-toast";
-import { FileJson, Download } from 'lucide-react';
+import { FileJson, Download, Settings } from 'lucide-react';
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -58,16 +58,11 @@ export default function DashboardLayout({ children, patientName, data }: Dashboa
                       <FileJson className="mr-2 h-4 w-4" />
                       Patient Overview
                     </Button>
-                  </div>
-                </div>
-                <div className="mt-auto pt-4">
-                  <Button 
-                    className="w-full bg-medical-primary hover:bg-medical-primary/90"
-                    onClick={exportData}
-                  >
-                    <Download className="mr-2 h-4 w-4" />
-                    Export Data
+                    <Button variant="ghost" className="w-full justify-start mt-2">
+                      <Settings className="mr-2 h-4 w-4" />
+                    Settings
                   </Button>
+                  </div>
                 </div>
               </div>
             </SidebarContent>
@@ -79,7 +74,7 @@ export default function DashboardLayout({ children, patientName, data }: Dashboa
                 <div className="flex items-center">
                   <SidebarTrigger />
                   <h1 className="ml-4 text-2xl font-semibold text-medical-text">
-                    Patient Dashboard
+                    Patient Overview
                   </h1>
                 </div>
                 <Button 
