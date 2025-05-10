@@ -1,5 +1,4 @@
 import logging
-
 from dotenv import load_dotenv
 from livekit.agents import (
     Agent,
@@ -13,37 +12,39 @@ from livekit.agents import (
     RoomInputOptions,
 )
 from livekit.plugins import (
-    openai,
     noise_cancellation,
+    google,
     silero,
-    google
-    )
+)
 from livekit.plugins.turn_detector.multilingual import MultilingualModel
+import os
 
+# Import your GeminiLLM wrapper
+from gemini_llm import GeminiLLM
 
-load_dotenv(dotenv_path=".env")
+# Load environment variables for the agent
+load_dotenv(dotenv_path=".env.local")
 logger = logging.getLogger("voice-agent")
 
 
 class Assistant(Agent):
     def __init__(self) -> None:
-        # This project is configured to use Deepgram STT, OpenAI LLM and Cartesia TTS plugins
-        # Other great providers exist like Cerebras, ElevenLabs, Groq, Play.ht, Rime, and more
-        # Learn more and pick the best one for your app:
-        # https://docs.livekit.io/agents/plugins
         super().__init__(
-            instructions="You are a voice assistant created by LiveKit. Your interface with users will be voice. "
-            "You should use short and concise responses, and avoiding usage of unpronouncable punctuation. "
-            "You were created as a demo to showcase the capabilities of LiveKit's agents framework.",
-            stt=google.STT(), # gemini
-            llm=gemini.LLM(model="gemini-pro"),
-            tts=google.TTS(), # gemini
-            # use LiveKit's transformer-based turn detector
+            instructions="You are a voice assistant created by LiveKit. Your interface with users is voice-based. Use short, concise responses.",
+            stt=google.STT(),
+            # Replace the OpenAI LLM with your GeminiLLM instance.
+            llm=GeminiLLM(),
+            tts=google.TTS(),
             turn_detection=MultilingualModel(),
         )
 
     async def on_enter(self):
-        # The agent should be polite and greet the user when it joins :)
+        # Test the Gemini LLM integration
+        test_prompt = "What is the capital of France?"
+        gemini_response = self.llm.complete(test_prompt)
+        logger.info(f"Gemini LLM Test Response: {gemini_response}")
+
+        # Greet the user when the session starts
         self.session.generate_reply(
             instructions="Hey, how can I help you today?", allow_interruptions=True
         )
