@@ -335,30 +335,191 @@
                         }
                     }
                 },
-                "DoctorLetters": {
+                "ClinicalReports": {
                 "type": "array",
                 "items": {
                     "type": "object",
                     "properties": {
-                    "diagnosis": {
-                        "type": "array",
-                        "items": { "type": "string" }
-                    },
-                    "anamneses": { "type": "string" },
-                    "otherFindings": {
-                        "type": "array",
-                        "items": {
-                        "type": "object",
-                        "properties": {
-                            "date": { "type": "string", "format": "date" },
-                            "test": { "type": "string" },
-                            "testDiagnosis": { "type": "string" }
+                        "doctor": { "type": "string" },
+                        "clinic": { "type": "string" },
+                        "recipient": { "type": "string" },
+                        "diagnosis": {
+                            "type": "array",
+                            "items": { "type": "string" }
                         },
-                        "required": ["date", "test", "testDiagnosis"]
+                        "anamneses": { "type": "string" },
+                        "otherFindings": {
+                            "type": "array",
+                            "items": {
+                            "type": "object",
+                            "properties": {
+                                "date": { "type": "string", "format": "date" },
+                                "test": { "type": "string" },
+                                "testDiagnosis": { "type": "string" }
+                            },
+                            "required": ["date", "test", "testDiagnosis"]
+                            }
+                        },
+                        "medications": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                "medicationName": { "type": "string" },
+                                "dosage": { "type": "string" },
+                                "frequency": { "type": "string" },
+                                "route": { "type": "string" },
+                                "startDate": { "type": "string" },
+                                "endDate": { "type": "string" }
+                                }
+                            }
+                        },
+                        "laboratory": {
+                            "type": "object",
+                            "items": {
+                            "hemoglobin": {
+                                "type": "object",
+                                "properties": {
+                                    "value": { "type": "number" },
+                                    "unit": { "type": "string" }
+                                },
+                                "required": ["value", "unit"]
+                                },
+                                "hematocrit": {
+                                "type": "object",
+                                "properties": {
+                                    "value": { "type": "number" },
+                                    "unit": { "type": "string" }
+                                },
+                                "required": ["value", "unit"]
+                                },
+                                "erythrocytes": {
+                                "type": "object",
+                                "properties": {
+                                    "value": { "type": "number" },
+                                    "unit": { "type": "string" }
+                                },
+                                "required": ["value", "unit"]
+                                },
+                                "leukocytes": {
+                                "type": "object",
+                                "properties": {
+                                    "value": { "type": "number" },
+                                    "unit": { "type": "string" }
+                                },
+                                "required": ["value", "unit"]
+                                },
+                                "platelets": {
+                                "type": "object",
+                                "properties": {
+                                    "value": { "type": "number" },
+                                    "unit": { "type": "string" }
+                                },
+                                "required": ["value", "unit"]
+                                },
+                                "MCV": {
+                                "type": "object",
+                                "properties": {
+                                    "value": { "type": "number" },
+                                    "unit": { "type": "string" }
+                                },
+                                "required": ["value", "unit"]
+                                },
+                                "MCH": {
+                                "type": "object",
+                                "properties": {
+                                    "value": { "type": "number" },
+                                    "unit": { "type": "string" }
+                                },
+                                "required": ["value", "unit"]
+                                },
+                                "MCHC": {
+                                "type": "object",
+                                "properties": {
+                                    "value": { "type": "number" },
+                                    "unit": { "type": "string" }
+                                },
+                                "required": ["value", "unit"]
+                                },
+                                "neutrophils": {
+                                "type": "object",
+                                "properties": {
+                                    "value": { "type": "number" },
+                                    "unit": { "type": "string" }
+                                },
+                                "required": ["value", "unit"]
+                                },
+                                "lymphocytes": {
+                                "type": "object",
+                                "properties": {
+                                    "value": { "type": "number" },
+                                    "unit": { "type": "string" }
+                                },
+                                "required": ["value", "unit"]
+                                },
+                                "monocytes": {
+                                "type": "object",
+                                "properties": {
+                                    "value": { "type": "number" },
+                                    "unit": { "type": "string" }
+                                },
+                                "required": ["value", "unit"]
+                                },
+                                "eosinophils": {
+                                "type": "object",
+                                "properties": {
+                                    "value": { "type": "number" },
+                                    "unit": { "type": "string" }
+                                },
+                                "required": ["value", "unit"]
+                                },
+                                "basophils": {
+                                "type": "object",
+                                "properties": {
+                                    "value": { "type": "number" },
+                                    "unit": { "type": "string" }
+                                },
+                                "required": ["value", "unit"]
+                                },
+                                "reticulocytes": {
+                                "type": "object",
+                                "properties": {
+                                    "value": { "type": "number" },
+                                    "unit": { "type": "string" }
+                                },
+                                "required": ["value", "unit"]
+                                },
+                                "CRP": {
+                                "type": "object",
+                                "properties": {
+                                    "value": { "type": "number" },
+                                    "unit": { "type": "string" }
+                                },
+                                "required": ["value", "unit"]
+                                }
+                            }
                         }
                     }
-                    }
                 }
+                },
+                "DoctorLetters": {
+                    "type": "array",
+                    "items": {
+                        "sender": { "type": "string" },
+                        "recipient": { "type": "string" },
+                        "diagnosis": {
+                            "type": "array",
+                            "items": {
+                                "name": { "type": "string "}
+                            }
+                        },
+                        "recommendations": {
+                            "type": "array",
+                            "items": {
+                                "name": { "type": "string "}
+                            }
+                        }
+                    }
                 }
             }
         },
