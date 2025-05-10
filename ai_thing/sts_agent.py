@@ -13,17 +13,15 @@ from livekit.agents import (
     RoomInputOptions,
 )
 from livekit.plugins import (
-    cartesia,
     openai,
-    deepgram,
     noise_cancellation,
     silero,
-    google,
-)
+    google
+    )
 from livekit.plugins.turn_detector.multilingual import MultilingualModel
 
 
-load_dotenv(dotenv_path=".env.local")
+load_dotenv(dotenv_path=".env")
 logger = logging.getLogger("voice-agent")
 
 
@@ -38,8 +36,8 @@ class Assistant(Agent):
             "You should use short and concise responses, and avoiding usage of unpronouncable punctuation. "
             "You were created as a demo to showcase the capabilities of LiveKit's agents framework.",
             stt=google.STT(), # gemini
-            llm=openai.LLM(model="gpt-4o-mini"),
-            tts=cartesia.TTS(), # gemini
+            llm=gemini.LLM(model="gemini-pro"),
+            tts=google.TTS(), # gemini
             # use LiveKit's transformer-based turn detector
             turn_detection=MultilingualModel(),
         )
