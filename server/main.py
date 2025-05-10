@@ -69,7 +69,7 @@ async def post_vaccinations(files: list[UploadFile] = File(...)):
         raise HTTPException(status_code=500, detail=f"LLM extraction failed: {e}")
     # ----------------------------------------------------------
     data_store["vaccinations"] = [v.model_dump() for v in vaccinations]
-    return JSONResponse(content={"message": "vaccinations saved successfully."})
+    return JSONResponse(content={"message": "vaccinations saved successfully.", "data": data_store["vaccinations"]})
 
 @app.get("/get/vaccinations")
 async def get_vaccinations():
@@ -83,7 +83,7 @@ async def get_vaccinations():
 async def post_reasons_for_visit(payload: ReasonsForVisit):
     logging.info("POST /post/reasonsForVisit called with payload: %s", payload.model_dump())
     data_store["reasonsForVisit"] = payload.model_dump()
-    return JSONResponse(content={"message": "reasonsForVisit saved successfully."})
+    return JSONResponse(content={"message": "reasonsForVisit saved successfully.", "data": data_store["reasonsForVisit"]})
 
 @app.get("/get/reasonsForVisit")
 async def get_reasons_for_visit():
@@ -97,7 +97,7 @@ async def get_reasons_for_visit():
 async def post_additional_comments(payload: AdditionalComments):
     logging.info("POST /post/additionalComments called with payload: %s", payload.model_dump())
     data_store["additionalComments"] = payload.model_dump()
-    return JSONResponse(content={"message": "additionalComments saved successfully."})
+    return JSONResponse(content={"message": "additionalComments saved successfully.", "data": data_store["additionalComments"]})
 
 @app.get("/get/additionalComments")
 async def get_additional_comments():
@@ -127,7 +127,7 @@ async def post_blood_panels(files: list[UploadFile] = File(...)):
         raise HTTPException(status_code=500, detail=f"LLM extraction failed: {e}")
     # ----------------------------------------------------------
     data_store["bloodPanels"] = [p.model_dump() for p in blood_panels]
-    return JSONResponse(content={"message": "bloodPanels saved successfully."})
+    return JSONResponse(content={"message": "bloodPanels saved successfully.", "data": data_store["bloodPanels"]})
 
 @app.get("/get/bloodPanels")
 async def get_blood_panels():
@@ -155,7 +155,7 @@ async def post_clinical_reports(files: list[UploadFile] = File(...)):
         raise HTTPException(status_code=500, detail=f"LLM extraction failed: {e}")
     # ----------------------------------------------------------
     data_store["clinicalReports"] = [p.model_dump() for p in clinical_reports]
-    return JSONResponse(content={"message": "clinicalReports saved successfully."})
+    return JSONResponse(content={"message": "clinicalReports saved successfully.", "data": data_store["clinicalReports"]})
 
 @app.get("/get/clinicalReports")
 async def get_clinical_reports():
@@ -183,7 +183,7 @@ async def post_doctor_letters(files: list[UploadFile] = File(...)):
         raise HTTPException(status_code=500, detail=f"LLM extraction failed: {e}")
     # ----------------------------------------------------------
     data_store["doctorLetters"] = [p.model_dump() for p in doctor_letters]
-    return JSONResponse(content={"message": "doctorLetters saved successfully."})
+    return JSONResponse(content={"message": "doctorLetters saved successfully.", "data": data_store["doctorLetters"]})
 
 @app.get("/get/doctorLetters")
 async def get_doctor_letters():
