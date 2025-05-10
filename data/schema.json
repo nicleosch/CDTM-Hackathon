@@ -20,179 +20,181 @@
         },
         "Apple Health": {
             "type": "object",
-            "Activity": {
-                "type": "object",
-                "properties": {
-                "stepCount": { "type": "number" },
-                "walkingDistance": { "type": "number" },
-                "runningDistance": { "type": "number" },
-                "flightsClimbed": { "type": "number" },
-                "activeEnergyBurned": { "type": "number" },
-                "exerciseMinutes": { "type": "number" },
-                "standHours": { "type": "number" }
-                }
-            },
-            "Body Measurements": {
-                "type": "object",
-                "properties": {
-                "height": { "type": "number" },
-                "weight": { "type": "number" },
-                "bodyMassIndex": { "type": "number" },
-                "bodyFatPercentage": { "type": "number" },
-                "leanBodyMass": { "type": "number" },
-                "waistCircumference": { "type": "number" }
-                }
-            },
-            "Cycle Tracking": {
-                "type": "object",
-                "properties": {
-                "menstrualFlow": { "type": "string" },
-                "basalBodyTemperature": { "type": "number" },
-                "ovulationTestResult": { "type": "string" },
-                "cervicalMucusQuality": { "type": "string" },
-                "sexualActivity": { "type": "boolean" }
-                }
-            },
-            "Hearing": {
-                "type": "object",
-                "properties": {
-                "headphoneAudioLevels": { "type": "number" },
-                "environmentalSoundLevels": { "type": "number" },
-                "hearingDeviceAudioLevels": { "type": "number" }
-                }
-            },
-            "Heart": {
-                "type": "object",
-                "properties": {
-                "heartRate": { "type": "number" },
-                "restingHeartRate": { "type": "number" },
-                "walkingHeartRateAverage": { "type": "number" },
-                "heartRateVariability": { "type": "number" },
-                "electrocardiogram": {
+            "properties": {
+                "Activity": {
                     "type": "object",
                     "properties": {
-                    "classification": { "type": "string" },
-                    "averageHeartRate": { "type": "number" },
-                    "samplingFrequency": { "type": "number" },
-                    "voltageMeasurements": {
-                        "type": "array",
-                        "items": { "type": "number" }
-                    }
-                    }
-                }
-                }
-            },
-            "Medications": {
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                    "medicationName": { "type": "string" },
-                    "dosage": { "type": "string" },
-                    "frequency": { "type": "string" },
-                    "route": { "type": "string" },
-                    "startDate": { "type": "string" },
-                    "endDate": { "type": "string" }
-                    }
-                }
-            },
-            "Mental Wellbeing": {
-                "type": "object",
-                "properties": {
-                "mindfulnessMinutes": { "type": "number" },
-                "moodTracking": { "type": "string" },
-                "stressLevel": { "type": "string" },
-                "anxietyTestResult": { "type": "string" },
-                "depressionTestResult": { "type": "string" }
-                }
-            },
-            "Mobility": {
-                "type": "object",
-                "properties": {
-                "walkingSpeed": { "type": "number" },
-                "stepLength": { "type": "number" },
-                "doubleSupportTime": { "type": "number" },
-                "walkingAsymmetry": { "type": "number" },
-                "walkingSteadiness": { "type": "string" }
-                }
-            },
-            "Nutrition": {
-                "type": "object",
-                "properties": {
-                "calories": { "type": "number" },
-                "carbohydrates": { "type": "number" },
-                "protein": { "type": "number" },
-                "fat": { "type": "number" },
-                "fiber": { "type": "number" },
-                "sugar": { "type": "number" },
-                "sodium": { "type": "number" },
-                "water": { "type": "number" }
-                }
-            },
-            "Respiratory": {
-                "type": "object",
-                "properties": {
-                "respiratoryRate": { "type": "number" },
-                "oxygenSaturation": { "type": "number" },
-                "peakExpiratoryFlowRate": { "type": "number" }
-                }
-            },
-            "Sleep": {
-                "type": "object",
-                "properties": {
-                "inBedTime": { "type": "string" },
-                "asleepTime": { "type": "string" },
-                "sleepDuration": { "type": "number" },
-                "sleepStages": {
-                    "type": "object",
-                    "properties": {
-                    "core": { "type": "number" },
-                    "deep": { "type": "number" },
-                    "rem": { "type": "number" },
-                    "awake": { "type": "number" }
-                    }
-                }
-                }
-            },
-            "Symptoms": {
-                "type": "object",
-                "properties": {
-                "headache": { "type": "boolean" },
-                "fatigue": { "type": "boolean" },
-                "fever": { "type": "boolean" },
-                "chills": { "type": "boolean" },
-                "cough": { "type": "boolean" },
-                "shortnessOfBreath": { "type": "boolean" },
-                "nausea": { "type": "boolean" },
-                "diarrhea": { "type": "boolean" }
-                }
-            },
-            "Vitals": {
-                "type": "object",
-                "properties": {
-                "bloodPressure": {
-                    "type": "object",
-                    "properties": {
-                    "systolic": { "type": "number" },
-                    "diastolic": { "type": "number" }
+                    "stepCount": { "type": "number" },
+                    "walkingDistance": { "type": "number" },
+                    "runningDistance": { "type": "number" },
+                    "flightsClimbed": { "type": "number" },
+                    "activeEnergyBurned": { "type": "number" },
+                    "exerciseMinutes": { "type": "number" },
+                    "standHours": { "type": "number" }
                     }
                 },
-                "bodyTemperature": { "type": "number" },
-                "bloodOxygenSaturation": { "type": "number" },
-                "bloodGlucose": {
-                    "type": "array",
+                "Body Measurements": {
+                    "type": "object",
                     "properties": {
-                    "value": "number"
+                    "height": { "type": "number" },
+                    "weight": { "type": "number" },
+                    "bodyMassIndex": { "type": "number" },
+                    "bodyFatPercentage": { "type": "number" },
+                    "leanBodyMass": { "type": "number" },
+                    "waistCircumference": { "type": "number" }
                     }
-                }
-                }
-            },
-            "Other Data": {
-                "type": "object",
-                "properties": {
-                "handwashingDuration": { "type": "number" },
-                "timeInDaylight": { "type": "number" },
-                "uvExposure": { "type": "number" }
+                },
+                "Cycle Tracking": {
+                    "type": "object",
+                    "properties": {
+                    "menstrualFlow": { "type": "string" },
+                    "basalBodyTemperature": { "type": "number" },
+                    "ovulationTestResult": { "type": "string" },
+                    "cervicalMucusQuality": { "type": "string" },
+                    "sexualActivity": { "type": "boolean" }
+                    }
+                },
+                "Hearing": {
+                    "type": "object",
+                    "properties": {
+                    "headphoneAudioLevels": { "type": "number" },
+                    "environmentalSoundLevels": { "type": "number" },
+                    "hearingDeviceAudioLevels": { "type": "number" }
+                    }
+                },
+                "Heart": {
+                    "type": "object",
+                    "properties": {
+                    "heartRate": { "type": "number" },
+                    "restingHeartRate": { "type": "number" },
+                    "walkingHeartRateAverage": { "type": "number" },
+                    "heartRateVariability": { "type": "number" },
+                    "electrocardiogram": {
+                        "type": "object",
+                        "properties": {
+                        "classification": { "type": "string" },
+                        "averageHeartRate": { "type": "number" },
+                        "samplingFrequency": { "type": "number" },
+                        "voltageMeasurements": {
+                            "type": "array",
+                            "items": { "type": "number" }
+                        }
+                        }
+                    }
+                    }
+                },
+                "Medications": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                        "medicationName": { "type": "string" },
+                        "dosage": { "type": "string" },
+                        "frequency": { "type": "string" },
+                        "route": { "type": "string" },
+                        "startDate": { "type": "string" },
+                        "endDate": { "type": "string" }
+                        }
+                    }
+                },
+                "Mental Wellbeing": {
+                    "type": "object",
+                    "properties": {
+                    "mindfulnessMinutes": { "type": "number" },
+                    "moodTracking": { "type": "string" },
+                    "stressLevel": { "type": "string" },
+                    "anxietyTestResult": { "type": "string" },
+                    "depressionTestResult": { "type": "string" }
+                    }
+                },
+                "Mobility": {
+                    "type": "object",
+                    "properties": {
+                    "walkingSpeed": { "type": "number" },
+                    "stepLength": { "type": "number" },
+                    "doubleSupportTime": { "type": "number" },
+                    "walkingAsymmetry": { "type": "number" },
+                    "walkingSteadiness": { "type": "string" }
+                    }
+                },
+                "Nutrition": {
+                    "type": "object",
+                    "properties": {
+                    "calories": { "type": "number" },
+                    "carbohydrates": { "type": "number" },
+                    "protein": { "type": "number" },
+                    "fat": { "type": "number" },
+                    "fiber": { "type": "number" },
+                    "sugar": { "type": "number" },
+                    "sodium": { "type": "number" },
+                    "water": { "type": "number" }
+                    }
+                },
+                "Respiratory": {
+                    "type": "object",
+                    "properties": {
+                    "respiratoryRate": { "type": "number" },
+                    "oxygenSaturation": { "type": "number" },
+                    "peakExpiratoryFlowRate": { "type": "number" }
+                    }
+                },
+                "Sleep": {
+                    "type": "object",
+                    "properties": {
+                    "inBedTime": { "type": "string" },
+                    "asleepTime": { "type": "string" },
+                    "sleepDuration": { "type": "number" },
+                    "sleepStages": {
+                        "type": "object",
+                        "properties": {
+                        "core": { "type": "number" },
+                        "deep": { "type": "number" },
+                        "rem": { "type": "number" },
+                        "awake": { "type": "number" }
+                        }
+                    }
+                    }
+                },
+                "Symptoms": {
+                    "type": "object",
+                    "properties": {
+                    "headache": { "type": "boolean" },
+                    "fatigue": { "type": "boolean" },
+                    "fever": { "type": "boolean" },
+                    "chills": { "type": "boolean" },
+                    "cough": { "type": "boolean" },
+                    "shortnessOfBreath": { "type": "boolean" },
+                    "nausea": { "type": "boolean" },
+                    "diarrhea": { "type": "boolean" }
+                    }
+                },
+                "Vitals": {
+                    "type": "object",
+                    "properties": {
+                    "bloodPressure": {
+                        "type": "object",
+                        "properties": {
+                        "systolic": { "type": "number" },
+                        "diastolic": { "type": "number" }
+                        }
+                    },
+                    "bodyTemperature": { "type": "number" },
+                    "bloodOxygenSaturation": { "type": "number" },
+                    "bloodGlucose": {
+                        "type": "array",
+                        "properties": {
+                        "value": "number"
+                        }
+                    }
+                    }
+                },
+                "Other Data": {
+                    "type": "object",
+                    "properties": {
+                    "handwashingDuration": { "type": "number" },
+                    "timeInDaylight": { "type": "number" },
+                    "uvExposure": { "type": "number" }
+                    }
                 }
             }
         },
@@ -375,7 +377,7 @@
                             }
                         },
                         "laboratory": {
-                            "type": "object",
+                            "type": "array",
                             "items": {
                             "hemoglobin": {
                                 "type": "object",
@@ -505,18 +507,19 @@
                 "DoctorLetters": {
                     "type": "array",
                     "items": {
-                        "sender": { "type": "string" },
-                        "recipient": { "type": "string" },
-                        "diagnosis": {
-                            "type": "array",
-                            "items": {
-                                "name": { "type": "string "}
-                            }
-                        },
-                        "recommendations": {
-                            "type": "array",
-                            "items": {
-                                "name": { "type": "string "}
+                        "type": "object",
+                        "properties": {
+                            "sender": { "type": "string" },
+                            "recipient": { "type": "string" },
+                            "diagnosis": {
+                                "type": "array",
+                                "items": { "type": "string" }
+                            },
+                            "recommendations": {
+                                "type": "array",
+                                "items": {
+                                    "name": { "type": "string "}
+                                }
                             }
                         }
                     }
