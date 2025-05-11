@@ -106,10 +106,10 @@ const Index = () => {
       .then(data => setPatientData((prev: any) => ({ ...prev, medications: data })))
       .catch(() => setPatientData((prev: any) => ({ ...prev, medications: [] })));
     fetchReasonsForVisit()
-      .then(data => setPatientData((prev: any) => ({ ...prev, reasonsForVisit: typeof data === 'string' ? data : data.reasonsForVisit || "" })))
+      .then(data => setPatientData((prev: any) => ({ ...prev, reasonsForVisit: typeof data === 'string' ? data : data.reason || "" })))
       .catch(() => setPatientData((prev: any) => ({ ...prev, reasonsForVisit: "" })));
     fetchAdditionalComments()
-      .then(data => setPatientData((prev: any) => ({ ...prev, additionalComments: typeof data === 'string' ? data : data.additionalComments || "" })))
+      .then(data => setPatientData((prev: any) => ({ ...prev, additionalComments: typeof data === 'string' ? data : data.comment || "" })))
       .catch(() => setPatientData((prev: any) => ({ ...prev, additionalComments: "" })));
   }, [setPatientData]);
 
