@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface VitalsCardProps {
@@ -24,12 +23,15 @@ interface VitalsCardProps {
 }
 
 export default function VitalsCard({ vitals, respiratory, heart }: VitalsCardProps) {
-  // Calculate average glucose
-  const averageGlucose = vitals.bloodGlucose.reduce((sum, reading) => sum + reading.value, 0) / vitals.bloodGlucose.length;
+  // Calculate average glucose safely
+  const glucoseArray = Array.isArray(vitals.bloodGlucose) ? vitals.bloodGlucose : [];
+  const averageGlucose = glucoseArray.length > 0
+    ? glucoseArray.reduce((sum, reading) => sum + (reading?.value ?? 0), 0) / glucoseArray.length
+    : 0;
 
   // Define normal ranges and check if values are within range
   const isNormal = {
-    bloodPressure: vitals.bloodPressure.systolic < 130 && vitals.bloodPressure.diastolic < 80,
+    bloodPressure: vitals.bloodPressure?.systolic < 130 && vitals.bloodPressure?.diastolic < 80,
     bodyTemperature: vitals.bodyTemperature >= 36.5 && vitals.bodyTemperature <= 37.3,
     spo2: vitals.bloodOxygenSaturation >= 95,
     heartRate: heart.heartRate >= 60 && heart.heartRate <= 100,
@@ -52,7 +54,7 @@ export default function VitalsCard({ vitals, respiratory, heart }: VitalsCardPro
             <div className="text-xs font-medium text-gray-500">Blood Pressure</div>
             <div className="flex items-baseline">
               <span className={`text-xl font-medium ${getStatusColorClass(isNormal.bloodPressure)}`}>
-                {vitals.bloodPressure.systolic}/{vitals.bloodPressure.diastolic}
+                {vitals.bloodPressure?.systolic}/{vitals.bloodPressure?.diastolic}
               </span>
               <span className="ml-1 text-xs text-gray-500">mmHg</span>
             </div>
