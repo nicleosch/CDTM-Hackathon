@@ -109,7 +109,12 @@ async def get_vaccinations():
 @app.post("/post/reasonsForVisit")
 async def post_reasons_for_visit(payload: ReasonsForVisit):
     logging.info("POST /post/reasonsForVisit called with payload: %s", payload.model_dump())
-    data_store["reasonsForVisit"] = payload.model_dump()
+    try:
+        summary = llm.summarize_text(payload.reason)
+    except Exception as e:
+        logging.error("LLM summarization failed: %s", e)
+        raise HTTPException(status_code=500, detail=f"LLM summarization failed: {e}")
+    data_store["reasonsForVisit"] = summary
     return JSONResponse(content={"message": "reasonsForVisit saved successfully.", "data": data_store["reasonsForVisit"]})
 
 @app.get("/get/reasonsForVisit")

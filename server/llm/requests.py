@@ -68,3 +68,30 @@ def image2struct(
         raise ValueError(f"LLM returned unexpected format. Expected a dictionary with '{result_key}' key.")
 
     return [model_class(**item) for item in result]
+# ----------------------------------------------------------
+def summarize_text(text: str) -> str:
+    """
+    Sends the input text to Mistral with a summarization prompt and returns the summary.
+    """
+    if not constants.api_key:
+        raise ValueError("API key not found. Set the MISTRAL_API_KEY environment variable.")
+
+    client = Mistral(api_key=constants.api_key)
+    prompt = f"Summarize the following patient reason for visit in a very concise medical note: '{text}'"
+    messages = [
+        {
+            "role": "user",
+            "content": prompt
+        }
+    ]
+
+    try:
+        chat_response = client.chat.complete(
+            model=constants.model,
+            messages=messages
+        )
+    except Exception as e:
+        raise ValueError(f"Error summarizing text with Mistral: {e}")
+
+    summary = chat_response.choices[0].message.content
+    return summary

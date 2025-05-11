@@ -1,5 +1,5 @@
 # Re-export image_to_struct modules for easier imports
-from .requests import image2struct
+from .requests import image2struct, summarize_text
 from .constants import vax_prompt, blood_panel_prompt, clinical_report_prompt, doctor_letter_prompt, general_info_prompt, medication_prompt
 
 __all__ = [
@@ -9,5 +9,6 @@ __all__ = [
     "clinical_report_prompt",
     "doctor_letter_prompt",
     "general_info_prompt",
-    "medication_prompt"
+    "medication_prompt",
+    "summarize_text",
 ]
