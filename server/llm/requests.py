@@ -77,7 +77,8 @@ def summarize_text(text: str) -> str:
         raise ValueError("API key not found. Set the MISTRAL_API_KEY environment variable.")
 
     client = Mistral(api_key=constants.api_key)
-    prompt = f"Summarize the following patient reason for visit in a very concise medical note: '{text}'"
+    prompt = f"Summarize the following patient reason by listing the mentioned symptoms: '{text}'." \
+    "Please return the summary in key words. Don't use special characters like *."
     messages = [
         {
             "role": "user",
