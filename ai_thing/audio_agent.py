@@ -28,7 +28,7 @@ async def entrypoint(ctx: agents.JobContext):
         # llm=openai.realtime.RealtimeModel(voice="alloy"),
 
         stt=google.STT(),
-        llm=openai.LLM(model="gpt-4o-2024-11-20"),
+        llm=openai.LLM(model="gpt-4o-mini"),
         # llm = GeminiLLM(),
         tts = openai.TTS(model="gpt-4o-mini-tts"),
         # tts=google.TTS(),
